@@ -1,8 +1,8 @@
 "======================================================================
 "
-" vim-keystroke - 
+" vim-keystroke -
 "
-" Created by Jerry Wang <jerrywang1981@outlook.com> 
+" Created by Jerry Wang <jerrywang1981@outlook.com>
 "
 "======================================================================
 
@@ -43,6 +43,7 @@ endfunc
 let s:keystroke_inited = 0
 let s:keystroke_sound_supported = 0 " if this plugin is supported or not
 let s:has_sound_support = has('sound')
+let s:has_job_support = has('job')
 let s:theme_list = ['default', 'bubble', 'mario', 'sword', 'typewriter']
 let s:themes = {}
 let s:sound_files = {}
@@ -79,11 +80,18 @@ endfunc
 "----------------------------------------------------------------------
 " play a sound
 "----------------------------------------------------------------------
+let s:play_sound_jobs = []
+
 function! keystroke#playsound(filename)
   let l:filename = s:sound_files[g:keystroke_theme][a:filename]
 
   if s:has_sound_support == 1
     call sound_playfile(l:filename)
+  elseif s:has_job_support == 1
+    call add(s:play_sound_jobs, job_start(l:filename))
+    if len(s:play_sound_jobs) > 10
+      let s:play_sound_jobs = s:play_sound_jobs[-5:]
+    endif
   else
     call system(l:filename)
   endif
@@ -91,13 +99,13 @@ endfunc
 
 
 "----------------------------------------------------------------------
-" choose_theme 
+" choose_theme
 "----------------------------------------------------------------------
 function! s:choose_theme(theme)
   let l:path = fnamemodify(fnamemodify(s:plugindir, ':p') .. 'sounds', ':p') .. a:theme
   if isdirectory(l:path)
     return l:path
-  else 
+  else
 		call keystroke#errmsg('ERROR: not find "'. a:theme.'" in "'. s:plugindir .'"')
     return ''
   endif
@@ -136,6 +144,7 @@ function! s:init_sound_files()
             let l:sound_file = fnamemodify(s:themes[t], ':p') .. k
             let s:sound_files[t][k] = get(g:keystroke_players, b) .. ' ' .. l:sound_file
           endfor
+          break
         endif
       endfor
     endif
@@ -158,3 +167,17 @@ function! keystroke#play(key)
     call keystroke#playsound('default.mp3')
 	endif
 endfunc
+
+function! keystroke#print_all()
+  echom "g:keystroke_theme: " . g:keystroke_theme
+  echom "themes: "
+  echom  s:themes
+  echom "keystroke_players"
+  echom g:keystroke_players
+  echom "default_players: "
+  echom s:default_players
+  echom "keystroke initiated? " . s:keystroke_inited
+  echom "sound support? " . s:keystroke_sound_supported
+  echom "sound files: "
+  echom s:sound_files
+endfunction
