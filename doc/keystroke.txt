@@ -1,0 +1,107 @@
+*keystroke.txt*           Plugin to help do something in keystroke
+
+==============================================================================
+CONTENTS                                                  *keystroke-contents*
+
+    1.Intro........................................|keystroke-intro|
+    2.Installation.................................|keystroke-installation|
+    3.Setup........................................|keystroke-setup|
+    4.Commands.....................................|keystroke-commands|
+    5.About........................................|keystroke-about|
+    6.License......................................|keystroke-license|
+
+
+==============================================================================
+1. Intro 					              *keystroke-intro*
+
+vim-keystroke is a lua plugin for Vim/NeoVim, if the feature 'sound' is
+supported, it would call sound_playfile to play the audio file, otherwise it
+will call external binary file to play the audio file, for now,
+     play,aplay,mpg123,mpg321,paplay, afplay, cvls
+and supported only. In Windows, the plugin has 'cmdmp3.exe' to play the file,
+so you don't need to install anything.
+
+
+==============================================================================
+2.Installation                                          *keystroke-installation*
+
+You can install the plugin with your favorite plugin manager.
+
+------------------------------------------------------------------------------
+
+You can do it with vim-plug
+ >
+ Plug 'jerrywang1981/vim-keystroke'
+
+
+==============================================================================
+3.Setup                                                        *keystroke-setup*
+
+You can setup the plugin by setting global variable value
+------------------------------------------------------------------------------
+
+Usage:
+>
+  "valid theme: 'default', 'bubble', 'mario', 'sword', 'typewriter'
+  let g:keystroke_theme = 'default'
+<
+
+For now, the default players are (for feature 'sound' not supported only):
+    >
+  let s:default_players = {
+        \ 'play': 'play',
+        \ 'aplay': 'aplay',
+        \ 'mpg123': 'mpg123',
+        \ 'mpg321': 'mpg321',
+        \ 'paplay': 'paplay',
+        \ 'cvls': 'cvls --play-and-exit',
+        \ 'afplay': 'afplay'
+        \ }
+<
+If you want to add other audio player:
+
+  >
+  " if your audio player is audioplayer
+  let g:keystroke_players = { 'audioplayer', 'audioplayer --options1 --options2' }
+
+  " if you found vim +sound feature not working, and wanted to use external
+  sound player
+  let g:keystroke_vim_sound = 0
+
+
+<
+
+==============================================================================
+4.Commands                                                  *keystroke-commands*
+
+:KeyStrokeEnable                                              *:KeyStrokeEnable*
+
+You can enable the plugin with the command.
+
+:KeyStrokeDisable                                            *:KeyStrokeDisable*
+
+You can disable the plugin with the command.
+
+:KeyStrokeToggle                                              *:KeyStrokeToggle*
+
+You can toggle the plugin with the command, when the plugin is enabled, after
+you run the command, it is disabled. when the plugin is diabled, then it is
+enabled.
+
+==============================================================================
+5.About 						       *keystroke-about*
+
+The maintainers are:
+  Jerry Wang <jerrywang1981@outlook.com>
+  github: jerrywang1981
+
+Find latest version at:
+  https://github.com/jerrywang1981/vim-keystroke
+
+==============================================================================
+6.License                                                    *keystroke-license*
+
+keystroke.vim is released under MIT license.
+
+vim:tw=78:ts=8:ft=help:norl:
+
