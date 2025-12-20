@@ -15,8 +15,8 @@ let g:keystroke_theme = get(g:, 'keystroke_theme', 'default')
 let s:default_players = {
       \ 'play': 'play',
       \ 'aplay': 'aplay',
-      \ 'mpg123': 'mpg123',
-      \ 'mpg321': 'mpg321',
+      "\ 'mpg123': 'mpg123',
+      "\ 'mpg321': 'mpg321',
       \ 'paplay': 'paplay',
       \ 'cvls': 'cvls --play-and-exit',
       \ 'afplay': 'afplay'
