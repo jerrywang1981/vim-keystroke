@@ -2,7 +2,7 @@
 "
 " vim-keystroke -
 "
-" Created by Jerry Wang <jerrywang1981@outlook.com> 
+" Created by Jerry Wang <jerrywang1981@outlook.com>
 
 "
 "======================================================================
@@ -27,7 +27,7 @@ function! s:keystroke_init(enable)
 		augroup END
 	else
 		if keystroke#init() != 1
-			call keystroke('ERROR: keystroke init failed')
+			call keystroke#errmsg('ERROR: keystroke init failed')
 			return
 		endif
 		if exists('#TextChangedP') || exists('##TextChangedP')

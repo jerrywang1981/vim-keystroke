@@ -1,0 +1,11 @@
+:KeyStrokeDisable	keystroke.txt	/*:KeyStrokeDisable*
+:KeyStrokeEnable	keystroke.txt	/*:KeyStrokeEnable*
+:KeyStrokeToggle	keystroke.txt	/*:KeyStrokeToggle*
+keystroke-about	keystroke.txt	/*keystroke-about*
+keystroke-commands	keystroke.txt	/*keystroke-commands*
+keystroke-contents	keystroke.txt	/*keystroke-contents*
+keystroke-installation	keystroke.txt	/*keystroke-installation*
+keystroke-intro	keystroke.txt	/*keystroke-intro*
+keystroke-license	keystroke.txt	/*keystroke-license*
+keystroke-setup	keystroke.txt	/*keystroke-setup*
+keystroke.txt	keystroke.txt	/*keystroke.txt*

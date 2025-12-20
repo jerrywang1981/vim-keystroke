@@ -120,7 +120,7 @@ function! s:init_theme_dict()
 endfunction
 
 function! s:init_sound_files()
-  let l:keys = ['default.ogg', 'enter.ogg']
+  let l:keys = ['default.wav', 'enter.wav']
   for t in s:theme_list
     let s:sound_files[t] = {}
 
@@ -130,12 +130,13 @@ function! s:init_sound_files()
         let s:sound_files[t][k] = fnamemodify(s:themes[t], ':p') .. k
       endfor
     elseif s:env == 'WINDOWS'
-      let s:keystroke_sound_supported = 1
-      let l:cmd = fnamemodify(fnamemodify(s:plugindir, ':p') .. 'sounds', ':p') .. 'cmdmp3.exe'
-      for k in l:keys
-        let l:sound_file = fnamemodify(s:themes[t], ':p') .. k
-        let s:sound_files[t][k] = l:cmd .. ' ' .. l:sound_file
-      endfor
+      let s:keystroke_sound_supported = 0
+      " let s:keystroke_sound_supported = 1
+      " let l:cmd = fnamemodify(fnamemodify(s:plugindir, ':p') .. 'sounds', ':p') .. 'cmdmp3.exe'
+      " for k in l:keys
+      "   let l:sound_file = fnamemodify(s:themes[t], ':p') .. k
+      "   let s:sound_files[t][k] = l:cmd .. ' ' .. l:sound_file
+      " endfor
     else
       for b in keys(g:keystroke_players)
         if executable(b)
@@ -162,9 +163,9 @@ endfunc
 
 function! keystroke#play(key)
 	if a:key == "\n"
-    call keystroke#playsound('enter.ogg')
+    call keystroke#playsound('enter.wav')
 	else
-    call keystroke#playsound('default.ogg')
+    call keystroke#playsound('default.wav')
 	endif
 endfunc
 
